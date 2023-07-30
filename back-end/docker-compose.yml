@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: afiliado
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: fullstack-afiliados
+    ports:
+      - "5432:5432" 
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: express_app
+    restart: always
+    ports:
+      - "3000:3000"  
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://afiliado:1234@db:5432/fullstack-afiliados
+
+volumes:
+  pg_data:

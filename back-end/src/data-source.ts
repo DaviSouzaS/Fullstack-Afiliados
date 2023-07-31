@@ -2,14 +2,23 @@ import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { User } from "./entity/User.entity"
 import { Transaction } from "./entity/Transaction.entity"
+import 'dotenv/config'
+
+const host: string | undefined = process.env.DB_HOST
+const port: string | undefined = process.env.DB_PORT
+const user: string | undefined = process.env.DB_USER
+const password: string | undefined = process.env.DB_PASSWORD
+const database: string | undefined = process.env.DB_NAME
+
+if (!host || !port || !user || !password || !database) throw new Error("Missing env variables")
 
 export const AppDataSource = new DataSource({
     type: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "my_user",
-    password: "my_password",
-    database: "afiliados-db",
+    host: host,
+    port: parseInt(port),
+    username: user,
+    password: password,
+    database: database,
     synchronize: true,
     logging: false,
     entities: [User, Transaction],

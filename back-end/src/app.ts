@@ -11,7 +11,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use("/user", userRouter)
-app.use("/transaction", transactionsRouter)
+app.use("/transactions", transactionsRouter)
 
 app.use(handleErrors)
 

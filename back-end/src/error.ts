@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express"
-import { ZodError } from "zod"
+import { Request, Response, NextFunction } from "express";
+import { ZodError } from "zod";
 
 class AppError extends Error {
     message: string

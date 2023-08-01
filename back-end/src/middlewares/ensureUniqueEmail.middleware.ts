@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from "express"
-import { AppDataSource } from "../data-source" 
-import { Repository } from "typeorm"
-import { AppError } from "../error"
-import { User } from "../entity/User.entity" 
+import { Request, Response, NextFunction } from "express";
+import { AppDataSource } from "../data-source";
+import { Repository } from "typeorm";
+import { AppError } from "../error";
+import { User } from "../entity/User.entity";
 
 export const ensureUniqueEmail = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
 

@@ -1,6 +1,6 @@
-import { Request, Response } from "express"
-import { iLoginUser, iUserLoginReturn } from "../interfaces/user.interfaces"
-import { loginUserService } from "../services/loginUser.service"
+import { Request, Response } from "express";
+import { iLoginUser, iUserLoginReturn } from "../interfaces/user.interfaces";
+import { loginUserService } from "../services/loginUser.service";
 
 export const loginUserController = async (request: Request, response: Response): Promise<Response> => {
 

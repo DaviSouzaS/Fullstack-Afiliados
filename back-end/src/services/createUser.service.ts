@@ -1,7 +1,7 @@
-import { AppDataSource } from "../data-source"
-import { Repository } from "typeorm"
-import { User } from "../entity/User.entity" 
-import { iCreateUser } from "../interfaces/user.interfaces"
+import { AppDataSource } from "../data-source";
+import { Repository } from "typeorm";
+import { User } from "../entity/User.entity";
+import { iCreateUser } from "../interfaces/user.interfaces";
 
 export const createUserService = async (payload: iCreateUser): Promise<User> => {
     

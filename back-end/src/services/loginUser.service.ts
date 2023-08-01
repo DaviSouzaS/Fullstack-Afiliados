@@ -1,11 +1,11 @@
-import { iLoginUser, iUserLoginReturn } from "../interfaces/user.interfaces" 
-import { AppDataSource } from "../data-source" 
-import { User } from "../entity/User.entity"
-import { Repository } from "typeorm"
-import { AppError } from "../error" 
-import { compare } from "bcryptjs"
-import jwt from "jsonwebtoken"
-import "dotenv/config" 
+import { iLoginUser, iUserLoginReturn } from "../interfaces/user.interfaces";
+import { AppDataSource } from "../data-source";
+import { User } from "../entity/User.entity";
+import { Repository } from "typeorm";
+import { AppError } from "../error";
+import { compare } from "bcryptjs";
+import jwt from "jsonwebtoken";
+import "dotenv/config";
 
 export const loginUserService = async (payload: iLoginUser): Promise<iUserLoginReturn> => {
     

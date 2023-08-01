@@ -7,7 +7,7 @@ export class Transaction {
     id: number
 
     @Column()
-    transaction_type: "1" | "2" | "3" | "4"
+    transaction_type: string
     
     @Column()
     transaction_description: "Venda produtor" | "Venda afiliado" | "Comissão paga" | "Comissão recebida"

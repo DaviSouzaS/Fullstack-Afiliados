@@ -1,9 +1,9 @@
-import { DeepPartial, Repository } from "typeorm"
-import { AppDataSource } from "../data-source"
-import { Transaction } from "../entity/Transaction.entity"
-import { iTransaction } from "../interfaces/transaction.interface"
+import { Repository } from "typeorm";
+import { AppDataSource } from "../data-source";
+import { Transaction } from "../entity/Transaction.entity";
+import { iTransaction } from "../interfaces/transaction.interface";
 
-export const createTransactionService = async (payload: string) => {
+export const createTransactionService = async (payload: string): Promise<void> => {
 
     const transactionsList = payload.split("\r\n")
 

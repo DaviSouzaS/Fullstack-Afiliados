@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from "express"
-import { AppError } from "../error"
-import jwt from "jsonwebtoken"
-import "dotenv/config"
+import { Request, Response, NextFunction } from "express";
+import { AppError } from "../error";
+import jwt from "jsonwebtoken";
+import "dotenv/config";
 
 export const validateToken = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
     

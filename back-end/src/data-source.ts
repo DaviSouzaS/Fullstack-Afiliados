@@ -1,8 +1,8 @@
-import "reflect-metadata"
-import { DataSource } from "typeorm"
-import { User } from "./entity/User.entity"
-import { Transaction } from "./entity/Transaction.entity"
-import 'dotenv/config'
+import "reflect-metadata";
+import { DataSource } from "typeorm";
+import { User } from "./entity/User.entity";
+import { Transaction } from "./entity/Transaction.entity";
+import 'dotenv/config';
 
 const host: string | undefined = process.env.DB_HOST
 const port: string | undefined = process.env.DB_PORT

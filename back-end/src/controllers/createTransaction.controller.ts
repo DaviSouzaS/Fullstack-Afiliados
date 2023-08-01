@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { createTransactionService } from "../services/createTransaction.service";
 import fs from 'fs';
 
-export const createTransactionController =  async (request: Request, response: Response) => {
+export const createTransactionController =  async (request: Request, response: Response): Promise<Response | undefined> => {
 
    if (!request.file) {
         return response.status(400).json({ error: 'No files sent.' })
@@ -15,7 +15,7 @@ export const createTransactionController =  async (request: Request, response: R
             return response.status(500).json({ error: 'Error reading the file.' });
         }
 
-        const transaction = await createTransactionService(data)
+        await createTransactionService(data)
 
         return response.status(201).json({message: 'transactions saved to database successfully'})
     })

@@ -2,8 +2,9 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Transaction } from "../entity/Transaction.entity";
 import { iTransaction } from "../interfaces/transaction.interface";
+import { Response } from "express";
 
-export const createTransactionService = async (payload: string): Promise<void> => {
+export const createTransactionService = async (payload: string, response: Response): Promise<void | Response> => {
 
     const transactionsList = payload.split("\r\n")
 
@@ -15,6 +16,10 @@ export const createTransactionService = async (payload: string): Promise<void> =
             const value = item.slice(56, 66)
             const seller = item.slice(66, 86)
 
+            if (isNaN(parseInt(type)) || parseInt(type) > 4 || isNaN(parseInt(value))) {
+                return response.status(400).json({message: 'The file has no transaction data'})
+            }
+
             const transactionDescription = type === "1" && "Venda produtor" || type === "2" && "Venda afiliado" || type === "3" && "Comissão paga" || type === "4" && "Comissão recebida" || undefined
 
             const transactionNature = parseInt(type) !== 3  && "Entrada" || parseInt(type) === 3 && "Saída" || undefined
@@ -24,7 +29,7 @@ export const createTransactionService = async (payload: string): Promise<void> =
                 transaction_description: transactionDescription!,
                 transaction_nature: transactionNature!,
                 date: date,
-                product: product,
+                product: product.trim(),
                 value: value,
                 seller: seller
             }

@@ -1,5 +1,5 @@
 import { iTransaction } from "../../pages/DashboardPage/types";
 
-export interface iTransactionCard {
+export interface iTransactionLine {
     transaction: iTransaction
 }

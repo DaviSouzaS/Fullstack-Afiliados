@@ -1,6 +1,6 @@
-import { iTransactionCard } from "./type"
+import { iTransactionLine } from "./type";
 
-export const TransactionCard = ({transaction}: iTransactionCard) => {
+export const TransactionLine = ({transaction}: iTransactionLine) => {
 
     const transactionNature = transaction.transaction_nature === "Entrada" ? "Entrada (+)" : "Saída (-)"
 

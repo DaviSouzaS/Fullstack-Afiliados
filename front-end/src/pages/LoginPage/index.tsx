@@ -16,23 +16,32 @@ export const LoginPage = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<iLogin>({
-        mode: "onBlur",
+        mode: "onSubmit",
         resolver: zodResolver(userLoginSchema),
     });
 
     return (
-        <>
-            <h1>Fazer login</h1>
+        <main className="h-[100vh] flex justify-center items-center">
+            <div className="w-[400px] h-[450px] bg-white rounded-[10px] flex items-center flex-col">
 
-            <Form onSubmit={handleSubmit(login)} inputCSS="">
-                <Input children={"Email"} css="" id="email" inputCSS="" type="email" placeHolder="Digite seu email aqui" register={register("email")}/>
-                <span> {errors?.email ? errors.email.message : null} </span>
+                <div className="w-[90%]">
+                    <div className="flex justify-between mt-[20px] mb-[30px]">
+                        <h1 className="font-inter text-lg font-bold">Fazer login</h1>
+                        <a className="font-inter text-base text-brand3 hover:underline" href="/register">Criar conta</a>
+                    </div>
 
-                <Input children={"Password"} css="" id="senha" inputCSS="" type="password" placeHolder="Digite sua senha aqui" register={register("password")}/>
-                <span> {errors?.password ? errors.password.message : null} </span>
+                    <Form onSubmit={handleSubmit(login)} inputCSS="flex justify-center items-center flex-col">
+                        <Input children={"Email"} css="w-[100%]" id="email" inputCSS="h-[50px] border-[2px] border-[grey1] rounded-[5px] mt-[10px]" type="email" placeHolder="Digite seu email aqui" register={register("email")}/>
+                        <div className="h-[10px] text-xs text-alert1 mb-[5px]"> {errors.email && <p>{errors.email.message}</p>} </div>
 
-                <Button children={"Fazer login"} css="" type="submit"/>
-            </Form>
-        </>
+                        <Input children={"Password"} css="w-[100%]" id="senha" inputCSS="h-[50px] border-[2px] border-[grey1] rounded-[5px] mt-[10px]" type="password" placeHolder="Digite sua senha aqui" register={register("password")}/>
+                        <div className="h-[10px] text-xs text-alert1 mb-[5px]"> {errors.password && <p>{errors.password.message}</p>} </div>
+
+                        <Button children={"Fazer login"} css="w-[200px] h-[50px] bg-brand1 text-white font-inter mt-[30px] rounded-[5px] hover:bg-random12 transition" type="submit"/>
+                    </Form>
+                </div>
+
+            </div>
+        </main>
     )
 }

@@ -2,12 +2,13 @@ import { useEffect } from "react"
 import { NavigateFunction, useNavigate } from "react-router-dom"
 import { api } from "../../service/axios"
 import { AxiosError } from "axios"
+import { iLoginReturn } from "../../schemas/user.schemas"
 
 export const DashboardPage = () => {
 
     const navigate: NavigateFunction = useNavigate()
 
-    const userInfosString = localStorage.getItem("@INFOS") || ""
+    const userInfosString: string = localStorage.getItem("@INFOS") || ""
 
     useEffect(() => {
         if (userInfosString.length === 0 || !userInfosString) {
@@ -17,9 +18,9 @@ export const DashboardPage = () => {
             return
         }
        
-        const userInfos = JSON.parse(userInfosString)
+        const userInfos: iLoginReturn = JSON.parse(userInfosString)
 
-        const token = userInfos.token
+        const token: string = userInfos.token
 
         if (!token) {
             localStorage.clear()

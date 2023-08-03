@@ -1,14 +1,21 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { iUserContext, iUserContextProps } from "./types";
 import { iLogin, iRegister } from "../../schemas/user.schemas";
 import { api } from "../../service/axios";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { AxiosError } from "axios";
 
 export const UserContext = createContext({} as iUserContext);
 
 export const UserProvider = ({ children }: iUserContextProps) => {
 
     const navigate: NavigateFunction = useNavigate()
+    
+    const [emailAlreadyExistsModal, setEmailAlreadyExistsModal] = useState(false);
+
+    const openOrCloseEmailAlreadyExistsModal = () => {
+        setEmailAlreadyExistsModal(!emailAlreadyExistsModal);
+    };
 
     const registerUser = async (data: iRegister) => {
 
@@ -24,6 +31,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
             navigate("/")        
         } catch (error) {
             console.error(error)
+            if (error instanceof AxiosError && error.response!.status === 409) {
+                openOrCloseEmailAlreadyExistsModal()
+            }
         }
     }
 
@@ -43,7 +53,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         <UserContext.Provider
             value={{
                 registerUser,
-                login
+                login,
+                openOrCloseEmailAlreadyExistsModal,
+                emailAlreadyExistsModal
             }}
         >
             {children}

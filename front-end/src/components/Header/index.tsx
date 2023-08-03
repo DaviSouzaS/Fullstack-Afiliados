@@ -28,7 +28,7 @@ export const Header = () => {
             <div className="flex justify-between items-center h-full max-w-[1200px] min-w-[90%]">
                 <p className="font-inter text-white text-lg font-medium">Fullstack Afiliados</p>
                 <div className="flex gap-5 items-center">
-                    <p className="font-inter text-white">Olá, </p>
+                    <p className="font-inter text-white">Olá, {userInfos.name}</p>
 
                     <button onClick={logout}>
                         <FiLogOut color={"white"} size={30}/>

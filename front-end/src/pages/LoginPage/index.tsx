@@ -6,6 +6,7 @@ import { iLogin, userLoginSchema } from "../../schemas/user.schemas";
 import { Button } from "../../components/Button";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
+import { AutoLogin } from "../../components/AutoLogin/Index";
 
 export const LoginPage = () => {
 
@@ -21,6 +22,8 @@ export const LoginPage = () => {
     });
 
     return (
+        <>
+        <AutoLogin/>
         <main className="h-[100vh] flex justify-center items-center">
             <div className="w-[400px] h-[450px] bg-white rounded-[10px] flex items-center flex-col">
 
@@ -43,5 +46,6 @@ export const LoginPage = () => {
 
             </div>
         </main>
+        </>
     )
 }

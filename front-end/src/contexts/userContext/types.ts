@@ -5,6 +5,8 @@ export interface iUserContext {
     registerUser: (data: iRegister) => void
     openOrCloseEmailAlreadyExistsModal: () => void
     emailAlreadyExistsModal: boolean
+    openOrCloseInvalidCredentialsModal: () => void
+    invalidCredentialsModal: boolean
 }
 
 export interface iUserContextProps {

@@ -12,6 +12,11 @@ export const UserProvider = ({ children }: iUserContextProps) => {
     const navigate: NavigateFunction = useNavigate()
     
     const [emailAlreadyExistsModal, setEmailAlreadyExistsModal] = useState(false);
+    const [invalidCredentialsModal, setInvalidCredentialsModal] = useState(false);
+
+    const openOrCloseInvalidCredentialsModal = () => {
+        setInvalidCredentialsModal(!invalidCredentialsModal);
+    };
 
     const openOrCloseEmailAlreadyExistsModal = () => {
         setEmailAlreadyExistsModal(!emailAlreadyExistsModal);
@@ -46,6 +51,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
             navigate("/dashboard")        
         } catch (error) {
             console.error(error)
+            if (error instanceof AxiosError && error.response!.status === 401) {
+                openOrCloseInvalidCredentialsModal()
+            }
         }
     }
     
@@ -55,7 +63,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
                 registerUser,
                 login,
                 openOrCloseEmailAlreadyExistsModal,
-                emailAlreadyExistsModal
+                emailAlreadyExistsModal,
+                openOrCloseInvalidCredentialsModal,
+                invalidCredentialsModal
             }}
         >
             {children}

@@ -5,15 +5,15 @@ import { api } from "../../service/axios";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 
-export const UserContext = createContext({} as iUserContext);
+export const UserContext = createContext({} as iUserContext)
 
 export const UserProvider = ({ children }: iUserContextProps) => {
 
     const navigate: NavigateFunction = useNavigate()
     
-    const [emailAlreadyExistsModal, setEmailAlreadyExistsModal] = useState(false);
-    const [invalidCredentialsModal, setInvalidCredentialsModal] = useState(false);
-    const [createUserWithSuccessModal, setCreateUserWithSuccessModal] = useState(false);
+    const [emailAlreadyExistsModal, setEmailAlreadyExistsModal] = useState(false)
+    const [invalidCredentialsModal, setInvalidCredentialsModal] = useState(false)
+    const [createUserWithSuccessModal, setCreateUserWithSuccessModal] = useState(false)
 
     const openOrCloseInvalidCredentialsModal = () => {
         setInvalidCredentialsModal(!invalidCredentialsModal);

@@ -22,7 +22,6 @@ export const Header = () => {
 
     const userInfos: iLoginReturn = JSON.parse(userInfosString)
 
-    console.log(userInfos)
     return (
         <header className="w-full bg-brand1 h-[60px] flex justify-center">
             <div className="flex justify-between items-center h-full max-w-[1200px] min-w-[90%]">

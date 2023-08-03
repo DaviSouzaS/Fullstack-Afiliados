@@ -3,6 +3,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom"
 import { api } from "../../service/axios"
 import { AxiosError } from "axios"
 import { iLoginReturn } from "../../schemas/user.schemas"
+import { Header } from "../../components/Header"
 
 export const DashboardPage = () => {
 
@@ -50,6 +51,7 @@ export const DashboardPage = () => {
 
     return (
         <>
+            <Header/>
             <h1>Dashboard</h1>
         </>
     )

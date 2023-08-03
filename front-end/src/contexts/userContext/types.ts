@@ -7,6 +7,8 @@ export interface iUserContext {
     emailAlreadyExistsModal: boolean
     openOrCloseInvalidCredentialsModal: () => void
     invalidCredentialsModal: boolean
+    openOrCloseCreateUserWithSuccessModal: () => void
+    createUserWithSuccessModal: boolean
 }
 
 export interface iUserContextProps {

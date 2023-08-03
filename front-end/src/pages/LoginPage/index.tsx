@@ -8,10 +8,11 @@ import { useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { AutoLogin } from "../../components/AutoLogin/Index";
 import { InvalidCredentialsModal } from "../../components/InvalidCredentialsModal";
+import { CreateUserWithSuccessModal } from "../../components/CreateUserWithSuccessModel";
 
 export const LoginPage = () => {
 
-    const { login, invalidCredentialsModal } = useContext(UserContext);
+    const { login, invalidCredentialsModal, createUserWithSuccessModal } = useContext(UserContext);
 
     const {
         register,
@@ -25,6 +26,7 @@ export const LoginPage = () => {
     return (
         <>
         {invalidCredentialsModal && <InvalidCredentialsModal/>}
+        {createUserWithSuccessModal && <CreateUserWithSuccessModal/>}
         <AutoLogin/>
         <main className="h-[100vh] flex justify-center items-center">
             <div className="w-[400px] h-[450px] bg-white rounded-[10px] flex items-center flex-col">

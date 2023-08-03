@@ -6,6 +6,7 @@ import { createUserSchema, iRegister } from "../../schemas/user.schemas";
 import { Button } from "../../components/Button";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
+import { AutoLogin } from "../../components/AutoLogin/Index";
 
 export const RegisterPage = () => {
 
@@ -16,11 +17,13 @@ export const RegisterPage = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<iRegister>({
-        mode: "onBlur",
+        mode: "onSubmit",
         resolver: zodResolver(createUserSchema),
     });
 
     return (
+        <>
+        <AutoLogin/>
         <main className="h-[100vh] flex justify-center items-center">
             <div className="w-[400px] h-[590px] bg-white rounded-[10px] flex justify-center items-center flex-col">
 
@@ -50,5 +53,6 @@ export const RegisterPage = () => {
                 </div>
             </div>
         </main>
+        </>
     )
 }

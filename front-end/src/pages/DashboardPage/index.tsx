@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { api } from "../../service/axios";
 import { AxiosError } from "axios";
@@ -11,11 +11,15 @@ import { useForm } from "react-hook-form";
 import { Button } from "../../components/Button";
 import { SubmitHandler } from 'react-hook-form';
 import { FieldValues } from 'react-hook-form';
+import { UserContext } from "../../contexts/userContext";
+import { RegisterTransactionsWithSuccessModal } from "../../components/RegisterTransactionsWithSuccessModal";
 
 export const DashboardPage = () => {
 
     const navigate: NavigateFunction = useNavigate()
     const [transactions, setTransactions] = useState<iTransaction[]>([])
+
+    const { registerTransactionsWithSuccessModal, openOrCloseTransactionsWithSuccessModal } = useContext(UserContext);
 
     const userInfosString: string = localStorage.getItem("@INFOS") || ""
 
@@ -33,14 +37,14 @@ export const DashboardPage = () => {
         const token: string = userInfos.token
 
         try {
-            const response = await api.post("/transactions", formData, {
+            await api.post("/transactions", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${token}`
-            }
-        });
+            }});
 
-        console.log('Resposta:', response.data);
+            openOrCloseTransactionsWithSuccessModal()
+            
         } catch (error) {
         console.error('Erro ao enviar o arquivo:', error);
         }
@@ -89,6 +93,7 @@ export const DashboardPage = () => {
 
     return (
         <>
+            {registerTransactionsWithSuccessModal && <RegisterTransactionsWithSuccessModal/>}
             <Header/>
             <main className="flex justify-center">
 
@@ -111,7 +116,7 @@ export const DashboardPage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {transactions.map(item => <TransactionLine transaction={item}/>)}
+                                {transactions.map(item => <TransactionLine key={item.id} transaction={item}/>)}
                             </tbody>
                         </table>        
                     </section>

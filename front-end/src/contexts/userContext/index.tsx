@@ -14,18 +14,23 @@ export const UserProvider = ({ children }: iUserContextProps) => {
     const [emailAlreadyExistsModal, setEmailAlreadyExistsModal] = useState(false)
     const [invalidCredentialsModal, setInvalidCredentialsModal] = useState(false)
     const [createUserWithSuccessModal, setCreateUserWithSuccessModal] = useState(false)
+    const [registerTransactionsWithSuccessModal, setRegisterTransactionsWithSuccessModal] = useState(false)
 
     const openOrCloseInvalidCredentialsModal = () => {
-        setInvalidCredentialsModal(!invalidCredentialsModal);
+        setInvalidCredentialsModal(!invalidCredentialsModal)
     };
 
     const openOrCloseEmailAlreadyExistsModal = () => {
-        setEmailAlreadyExistsModal(!emailAlreadyExistsModal);
+        setEmailAlreadyExistsModal(!emailAlreadyExistsModal)
     };
 
     const openOrCloseCreateUserWithSuccessModal = () => {
-        setCreateUserWithSuccessModal(!createUserWithSuccessModal);
+        setCreateUserWithSuccessModal(!createUserWithSuccessModal)
     };
+
+    const openOrCloseTransactionsWithSuccessModal = () => {
+        setRegisterTransactionsWithSuccessModal(!registerTransactionsWithSuccessModal)
+    }
 
     const registerUser = async (data: iRegister) => {
 
@@ -76,7 +81,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
                 openOrCloseInvalidCredentialsModal,
                 invalidCredentialsModal,
                 openOrCloseCreateUserWithSuccessModal,
-                createUserWithSuccessModal
+                createUserWithSuccessModal,
+                openOrCloseTransactionsWithSuccessModal,
+                registerTransactionsWithSuccessModal
             }}
         >
             {children}

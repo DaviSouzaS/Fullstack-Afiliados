@@ -9,6 +9,8 @@ export interface iUserContext {
     invalidCredentialsModal: boolean
     openOrCloseCreateUserWithSuccessModal: () => void
     createUserWithSuccessModal: boolean
+    openOrCloseTransactionsWithSuccessModal: () => void
+    registerTransactionsWithSuccessModal: boolean
 }
 
 export interface iUserContextProps {

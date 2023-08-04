@@ -13,13 +13,14 @@ import { SubmitHandler } from 'react-hook-form';
 import { FieldValues } from 'react-hook-form';
 import { UserContext } from "../../contexts/userContext";
 import { RegisterTransactionsWithSuccessModal } from "../../components/RegisterTransactionsWithSuccessModal";
+import { TransactionFileInvalidModal } from "../../components/TransactionFileInvalidModal";
 
 export const DashboardPage = () => {
 
     const navigate: NavigateFunction = useNavigate()
     const [transactions, setTransactions] = useState<iTransaction[]>([])
 
-    const { registerTransactionsWithSuccessModal, openOrCloseTransactionsWithSuccessModal } = useContext(UserContext);
+    const { registerTransactionsWithSuccessModal, openOrCloseTransactionsWithSuccessModal, openOrCloseTransactionFileInvalidModal, transactionFileInvalidModal } = useContext(UserContext);
 
     const userInfosString: string = localStorage.getItem("@INFOS") || ""
 
@@ -46,7 +47,11 @@ export const DashboardPage = () => {
             openOrCloseTransactionsWithSuccessModal()
             
         } catch (error) {
-        console.error('Erro ao enviar o arquivo:', error);
+            console.error(error);
+            
+            if (error instanceof AxiosError && error.response!.status === 400 ) {
+                openOrCloseTransactionFileInvalidModal()
+            }
         }
     }
 
@@ -94,6 +99,7 @@ export const DashboardPage = () => {
     return (
         <>
             {registerTransactionsWithSuccessModal && <RegisterTransactionsWithSuccessModal/>}
+            {transactionFileInvalidModal && <TransactionFileInvalidModal/>}
             <Header/>
             <main className="flex justify-center">
 

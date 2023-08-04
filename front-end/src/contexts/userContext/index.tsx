@@ -15,6 +15,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
     const [invalidCredentialsModal, setInvalidCredentialsModal] = useState(false)
     const [createUserWithSuccessModal, setCreateUserWithSuccessModal] = useState(false)
     const [registerTransactionsWithSuccessModal, setRegisterTransactionsWithSuccessModal] = useState(false)
+    const [transactionFileInvalidModal, setTransactionFileInvalidModal] = useState(false)
 
     const openOrCloseInvalidCredentialsModal = () => {
         setInvalidCredentialsModal(!invalidCredentialsModal)
@@ -30,6 +31,10 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
     const openOrCloseTransactionsWithSuccessModal = () => {
         setRegisterTransactionsWithSuccessModal(!registerTransactionsWithSuccessModal)
+    }
+
+    const openOrCloseTransactionFileInvalidModal = () => {
+        setTransactionFileInvalidModal(!transactionFileInvalidModal)
     }
 
     const registerUser = async (data: iRegister) => {
@@ -83,7 +88,9 @@ export const UserProvider = ({ children }: iUserContextProps) => {
                 openOrCloseCreateUserWithSuccessModal,
                 createUserWithSuccessModal,
                 openOrCloseTransactionsWithSuccessModal,
-                registerTransactionsWithSuccessModal
+                registerTransactionsWithSuccessModal,
+                openOrCloseTransactionFileInvalidModal,
+                transactionFileInvalidModal
             }}
         >
             {children}

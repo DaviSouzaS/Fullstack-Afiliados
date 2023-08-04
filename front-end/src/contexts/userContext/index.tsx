@@ -5,27 +5,37 @@ import { api } from "../../service/axios";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 
-export const UserContext = createContext({} as iUserContext);
+export const UserContext = createContext({} as iUserContext)
 
 export const UserProvider = ({ children }: iUserContextProps) => {
 
     const navigate: NavigateFunction = useNavigate()
     
-    const [emailAlreadyExistsModal, setEmailAlreadyExistsModal] = useState(false);
-    const [invalidCredentialsModal, setInvalidCredentialsModal] = useState(false);
-    const [createUserWithSuccessModal, setCreateUserWithSuccessModal] = useState(false);
+    const [emailAlreadyExistsModal, setEmailAlreadyExistsModal] = useState(false)
+    const [invalidCredentialsModal, setInvalidCredentialsModal] = useState(false)
+    const [createUserWithSuccessModal, setCreateUserWithSuccessModal] = useState(false)
+    const [registerTransactionsWithSuccessModal, setRegisterTransactionsWithSuccessModal] = useState(false)
+    const [transactionFileInvalidModal, setTransactionFileInvalidModal] = useState(false)
 
     const openOrCloseInvalidCredentialsModal = () => {
-        setInvalidCredentialsModal(!invalidCredentialsModal);
+        setInvalidCredentialsModal(!invalidCredentialsModal)
     };
 
     const openOrCloseEmailAlreadyExistsModal = () => {
-        setEmailAlreadyExistsModal(!emailAlreadyExistsModal);
+        setEmailAlreadyExistsModal(!emailAlreadyExistsModal)
     };
 
     const openOrCloseCreateUserWithSuccessModal = () => {
-        setCreateUserWithSuccessModal(!createUserWithSuccessModal);
+        setCreateUserWithSuccessModal(!createUserWithSuccessModal)
     };
+
+    const openOrCloseTransactionsWithSuccessModal = () => {
+        setRegisterTransactionsWithSuccessModal(!registerTransactionsWithSuccessModal)
+    }
+
+    const openOrCloseTransactionFileInvalidModal = () => {
+        setTransactionFileInvalidModal(!transactionFileInvalidModal)
+    }
 
     const registerUser = async (data: iRegister) => {
 
@@ -76,7 +86,11 @@ export const UserProvider = ({ children }: iUserContextProps) => {
                 openOrCloseInvalidCredentialsModal,
                 invalidCredentialsModal,
                 openOrCloseCreateUserWithSuccessModal,
-                createUserWithSuccessModal
+                createUserWithSuccessModal,
+                openOrCloseTransactionsWithSuccessModal,
+                registerTransactionsWithSuccessModal,
+                openOrCloseTransactionFileInvalidModal,
+                transactionFileInvalidModal
             }}
         >
             {children}

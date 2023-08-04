@@ -5,7 +5,7 @@ import { iTransaction } from "../interfaces/transaction.interface";
 import { Response } from "express";
 
 export const createTransactionService = async (payload: string, response: Response): Promise<void | Response> => {
-
+    console.log(payload)
     const transactionsList = payload.split("\r\n")
 
     transactionsList.map(async item => {

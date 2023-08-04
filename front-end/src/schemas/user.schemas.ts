@@ -19,6 +19,13 @@ export type iLogin = z.infer<typeof userLoginSchema>
 
 export type iRegister = z.infer<typeof createUserSchema>
 
+export interface iLoginReturn {
+    id: number
+    name: string
+    email: string
+    token: string
+}
+
 export {
     userLoginSchema,
     createUserSchema

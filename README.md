@@ -1,68 +1,24 @@
 # Fullstack Afiliados
 
-O objetivo desse teste é avaliar as suas habilidades em programação.
+>  This is a challenge by [Coodesh](https://coodesh.com/)
 
-### Antes de começar
- 
-- Prepare o projeto para ser disponibilizado no Github, copiando o conteúdo deste repositório para o seu (ou utilize o fork do projeto e aponte para o Github). Confirme que a visibilidade do projeto é pública (não esqueça de colocar no readme a referência a este challenge);
-- O projeto deve utilizar a Linguagem específica na sua Vaga (caso esteja se candidatando). Por exempo: Python, R, Scala e entre outras;
-- Considere como deadline 5 dias a partir do início do desafio. Caso tenha sido convidado a realizar o teste e não seja possível concluir dentro deste período, avise a pessoa que o convidou para receber instruções sobre o que fazer.
-- Documentar todo o processo de investigação para o desenvolvimento da atividade (README.md no seu repositório); os resultados destas tarefas são tão importantes do que o seu processo de pensamento e decisões à medida que as completa, por isso tente documentar e apresentar os seus hipóteses e decisões na medida do possível.
+Esse projeto foi um teste técnico para um processo seletivo em que estava participando.
 
-## Descrição do projeto
+O objetivo do projeto é desenvolver uma aplicação web que permita o upload de um arquivo ([sales.txt](sales.txt)) que contém transações de produtos vendidos. após o envio do arquivo, todos os dados devem ser tratados e armazenados em um banco de dados relacional.
 
-Surgiu uma nova demanda urgente e precisamos de uma área exclusiva para fazer o
-upload de um arquivo das transações feitas na venda de produtos por nossos
-clientes.
+Iniciei o desenvolvimento do projeto criando o DER (Diagrama Entidade Relacionamento) e definindo quais tabelas existiriam na aplicação (User table e Transactions table). Após isso, seguindo a proposta do projeto conclui que é necessário existir 4 rotas (criação de usuário (POST), login (POST), registrar transações (POST) e ler todas as transações (GET)), também defini que as rotas de registrar transações e ler todas as transações serão autenticadas.
 
-Nossa plataforma trabalha no modelo criador-afiliado, sendo assim um criador
-pode vender seus produtos e ter 1 ou mais afiliados também vendendo esses
-produtos, desde que seja paga uma comissão por venda.
+Para desenvolver o back-end da aplicação, utilizei o docker para conteinerização, o Type script como linguagem de programação, Express como framework, e as bibliotecas: TypeORM, pg, reflect-metadata, bcryptjs, dotenv, express-async-errors, jsonwebtoken, cors, zod e multer, além disso utilizei o banco de dados relacional MySQL.
 
-Sua tarefa é construir uma interface web que possibilite o upload de um arquivo
-de transações de produtos vendidos, normalizar os dados e armazená-los em um
-banco de dados relacional.
+O registro de transações foi sem dúvida a funcionalidade mais complexa da API. Para registrar todas as transações contidas no arquivo ([sales.txt](sales.txt)) foi necessário inicialmente transformar todo conteúdo do arquivo em uma string, após isso separei cada transação por meio de suas quebras de linha, dessa forma, consegui criar um array em que cada item era uma transação. Apartir disso, fiz um loop no array, tratei todos os dados e os salvei no banco de dados.
 
-Você deve utilizar o arquivo [sales.txt](sales.txt) para fazer o teste da
-aplicação. O formato esá descrito na seção "Formato do arquivo de entrada".
+Para tratar os dados de forma adequada, segui as tabelas que foram oferecidas no repositório original do teste técnico.
 
+Exemplo: 
 
-## Requisitos Funcionais
+12022-01-22T08:59:13-03:00DOMINANDO INVESTIMENTOS       0000050000MARIA CANDIDA
 
-Sua aplicação deve:
-
-1. Ter uma tela (via formulário) para fazer o upload do arquivo
-2. Fazer o parsing do arquivo recebido, normalizar os dados e armazená-los em um
-   banco de dados relacional, seguindo as definições de interpretação do arquivo
-3. Exibir a lista das transações de produtos importadas por produtor/afiliado,
-   com um totalizador do valor das transações realizadas
-4. Fazer tratamento de erros no backend, e reportar mensagens de erro amigáveis
-   no frontend.
-
-## Requisitos Não Funcionais
-
-1. A aplicação deve ser simples de configurar e rodar, compatível com ambiente
-   Unix. Você deve utilizar apenas bibliotecas gratuitas ou livres.
-2. Utilize docker para os diferentes serviços que compõe a aplicação para
-   que funcione facilmente fora do seu ambiente pessoal.
-3. Use qualquer banco de dados relacional.
-4. Use commits pequenos no Git e escreva uma boa descrição para cada um.
-5. Escreva unit tests tanto no backend quanto do frontend.
-6. Faça o código mais legível e limpo possível.
-7. Escreva o código (nomes e comentários) em inglês. A documentação pode ser em
-   português se preferir.
-
-## Requisitos Bônus
-
-Sua aplicação não precisa, mas ficaremos impressionados se ela:
-
-1. Tiver documentação das APIs do backend.
-2. Utilizar docker-compose para orquestar os serviços num todo.
-3. Ter testes de integração ou end-to-end.
-4. Tiver toda a documentação escrita em inglês fácil de entender. 
-5. Lidar com autenticação e/ou autorização.
-
-## Formato do arquivo de entrada
+### Formato do arquivo de entrada
 
 | Campo    | Início | Fim | Tamanho | Descrição                      |
 | -------- | ------ | --- | ------- | ------------------------------ |
@@ -83,50 +39,10 @@ Esses são os valores possíveis para o campo Tipo:
 | 3    | Comissão paga     | Saída    | -     |
 | 4    | Comissão recebida | Entrada  | +     |
 
-## Avaliação
+Seguindo as tabelas, sei que a transação acima é uma "Venda produtor", de natureza "Entrada", realizada na data 22/01/2022, no horário 08:59, o nome do produto é "DOMINANDO INVESTIMENTOS", o valor da transação foi "0000050000" cinquenta mil centavos, e a vendedora foi a "MARIA CANDIDA". Dessa forma consegui registrar cada transação no banco de dados.
 
-Seu projeto será avaliado de acordo com os seguintes critérios:
+Após finalizar o back-end, criei a [documentação da API](https://davisouzas.github.io/fullstack-afiliados-doc/). A documentação está abrangendo todos os possíveis resultados de cada rota (sucesso e erros), foi escrita totalmente em inglês e é um texto de fácil compreensão. 
 
-1. Documentação do setup do ambiente e execução que rode a aplicação com
-   sucesso.
-2. Cumprimento dos [requisitos funcionais](#Requisitos-Funcionais) e
-   [não funcionais](#Requisitos-Nao-Funcionais).
-3. Boa estruturação do componentes e layout de código, mas sem over engineering.
-3. Legibilidade do código.
-4. Boa cobertura de testes.
-5. Claridade e extensão da documentação.
-6. Cumprimento de algum [requisito bônus](#Requisitos-Bonus).
+Ao finalizar o back-end e sua documentação, iniciei o desenvolvimento do front-end utilizando React, Type script e as bibliotecas: react-router-dom, react-hook-form, @hookform/resolvers, axios, react-icons, zod e tailwindcss. A aplicação possui três páginas (página de login, página de registro e dashboard). 
 
-## Readme do Repositório
-
-- Deve conter o título do projeto
-- Uma descrição sobre o projeto em frase
-- Deve conter uma lista com linguagem, framework e/ou tecnologias usadas
-- Como instalar e usar o projeto (instruções)
-- Não esqueça o [.gitignore](https://www.toptal.com/developers/gitignore)
-- Se está usando github pessoal, referencie que é um challenge by coodesh:  
-
->  This is a challenge by [Coodesh](https://coodesh.com/)
-
-## Finalização e Instruções para a Apresentação
-
-Avisar sobre a finalização e enviar para correção.
-
-1. Confira se você respondeu o Scorecard anexado na Vaga que se candidatou;
-2. Confira se você respondeu o Mapeamento anexado na Vaga que se candidatou;
-3. Acesse [https://coodesh.com/challenges/review](https://coodesh.com/challenges/review);
-4. Adicione o repositório com a sua solução;
-5. Grave um vídeo, utilizando o botão na tela de solicitar revisão da Coodesh, com no máximo 5 minutos, com a apresentação do seu projeto. Utilize o tempo para:
-- Explicar o objetivo do desafio
-- Quais tecnologias foram utilizadas
-- Mostrar a aplicação em funcionamento
-- Foque em pontos obrigatórios e diferenciais quando for apresentar.
-6. Adicione o link da apresentação do seu projeto no README.md.
-7. Verifique se o Readme está bom e faça o commit final em seu repositório;
-8. Confira a vaga desejada;
-9. Envie e aguarde as instruções para seguir no processo. Sucesso e boa sorte. =)
-
-## Suporte
-
-Use a [nossa comunidade](https://discord.gg/rdXbEvjsWu) para tirar dúvidas sobre o processo ou envie uma mensagem diretamente a um especialista no chat da plataforma. 
-
+Após criar uma conta e fazer login, o usuário tem acesso a dashboard onde pode registrar as transações contidas no arquivo [sales.txt](sales.txt). O input só ira aceitar um arquivo ".txt" que siga o modelo de transações determinado pelas tabelas acima, caso contrário, um modal de erro irá aparecer. Se o arquivo enviado pelo usuário seguir o modelo correto, todas as transações serão cadastradas no banco de dados e renderizadas no topo da página. 

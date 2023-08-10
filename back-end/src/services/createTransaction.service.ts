@@ -4,21 +4,15 @@ import { Transaction } from "../entity/Transaction.entity";
 import { iTransaction } from "../interfaces/transaction.interface";
 import { Response } from "express";
 
-export const createTransactionService = async (payload: string, response: Response): Promise<void | Response> => {
-
-    const transactionsList = payload.split("\r\n")
-
-    transactionsList.map(async item => {
+export const createTransactionService = async (payload: string[]): Promise<{ message: string } | Response> => {
+    
+    for (const item of payload) {
         if (item.length > 0) {
             const type = item[0] 
             const date = item.slice(1, 26)
             const product = item.slice(26, 56)
             const value = item.slice(56, 66)
             const seller = item.slice(66, 86)
-
-            if (isNaN(parseInt(type)) || parseInt(type) > 4 || isNaN(parseInt(value))) {
-                return response.status(400).json({message: 'The file has no transaction data'})
-            }
 
             const transactionDescription = type === "1" && "Venda produtor" || type === "2" && "Venda afiliado" || type === "3" && "Comissão paga" || type === "4" && "Comissão recebida" || undefined
 
@@ -39,5 +33,7 @@ export const createTransactionService = async (payload: string, response: Respon
 
             await transactionRepo.save(transaction)
         }
-    })
+    }
+    
+    return { message: 'transactions saved to database successfully' };
 }

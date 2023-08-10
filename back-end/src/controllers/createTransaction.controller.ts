@@ -12,8 +12,10 @@ export const createTransactionController =  async (request: Request, response: R
             throw new AppError("Error reading the file.", 500)
         }
 
-        await createTransactionService(data, response)
+        const transactionsList = data.split("\r\n")
 
-        return response.status(201).json({message: 'transactions saved to database successfully'})
+        const transactions = await createTransactionService(transactionsList)
+
+        return response.status(201).json(transactions)
     })
 }

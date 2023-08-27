@@ -8,7 +8,7 @@
 
 Cada diretório (front-end e back-end) vai criar um docker container. Basta digitar "docker-compose up" em cada diretório e os containers serão gerados.
 
-### Rodar na maquina local.
+#### Rodar na maquina local.
 
 Front-end: Primeiramente "npm install" ou "yarn" para instalar as dependências, depois "npm run dev" ou "yarn dev". 
 

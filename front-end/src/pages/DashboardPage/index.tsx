@@ -109,7 +109,7 @@ export const DashboardPage = () => {
                         {transactions.length === 0 && <div className="w-full h-full flex justify-center items-center">
                             <p className="font-inter">Nenhuma transação registrada</p>
                         </div>}
-                        <table className="w-full">
+                        {transactions.length !== 0 && <table className="w-full">
                             <thead>
                                 <tr>
                                     <th className="border-[1px] border-black">Id</th>
@@ -124,7 +124,7 @@ export const DashboardPage = () => {
                             <tbody>
                                 {transactions.map(item => <TransactionLine key={item.id} transaction={item}/>)}
                             </tbody>
-                        </table>        
+                        </table>}
                     </section>
 
                     <section className="flex flex-col gap-5">

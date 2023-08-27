@@ -2,6 +2,20 @@
 
 >  This is a challenge by [Coodesh](https://coodesh.com/)
 
+### Instruções para rodar o projeto.
+
+#### Rodar com docker (É necessário ter o Docker e o docker-compose instalados).
+
+Cada diretório (front-end e back-end) vai criar um docker container. Basta digitar "docker-compose up" em cada diretório e os containers serão gerados.
+
+### Rodar na maquina local.
+
+Front-end: Primeiramente "npm install" ou "yarn" para instalar as dependências, depois "npm run dev" ou "yarn dev". 
+
+Back-end: Primeiramente "npm install" ou "yarn" para instalar as dependências, depois configurar o arquivo ".env" com base no ".env.example" e por último rodar "npm start" ou "yarn start". 
+
+# Informações do projeto
+
 Esse projeto foi um teste técnico para um processo seletivo em que estava participando.
 
 O objetivo do projeto é desenvolver uma aplicação web que permita o upload de um arquivo ([sales.txt](sales.txt)) que contém transações de produtos vendidos. após o envio do arquivo, todos os dados devem ser tratados e armazenados em um banco de dados relacional.

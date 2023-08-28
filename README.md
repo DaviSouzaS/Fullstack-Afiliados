@@ -14,6 +14,10 @@ Front-end: Primeiramente "npm install" ou "yarn" para instalar as dependências,
 
 Back-end: Primeiramente "npm install" ou "yarn" para instalar as dependências, depois configurar o arquivo ".env" com base no ".env.example" e por último rodar "npm start" ou "yarn start". 
 
+#### Rodar testes.
+
+Para rodar os testes digite "npm test" ou "yarn test" no back-end ou no front-end.
+
 # Informações do projeto
 
 Esse projeto foi um teste técnico para um processo seletivo em que estava participando.

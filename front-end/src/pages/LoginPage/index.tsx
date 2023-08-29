@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { AutoLogin } from "../../components/AutoLogin/Index";
 import { InvalidCredentialsModal } from "../../components/InvalidCredentialsModal";
-import { CreateUserWithSuccessModal } from "../../components/CreateUserWithSuccessModel";
+import { CreateUserWithSuccessModal } from "../../components/CreateUserWithSuccessModal";
 
 export const LoginPage = () => {
 

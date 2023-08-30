@@ -64,3 +64,4 @@ Após finalizar o back-end, criei a [documentação da API](https://davisouzas.g
 Ao finalizar o back-end e sua documentação, iniciei o desenvolvimento do front-end utilizando React, Type script e as bibliotecas: react-router-dom, react-hook-form, @hookform/resolvers, axios, react-icons, zod e tailwindcss. A aplicação possui três páginas (página de login, página de registro e dashboard). 
 
 Após criar uma conta e fazer login, o usuário tem acesso a dashboard onde pode registrar as transações contidas no arquivo [sales.txt](sales.txt). O input só ira aceitar um arquivo ".txt" que siga o modelo de transações determinado pelas tabelas acima, caso contrário, um modal de erro irá aparecer. Se o arquivo enviado pelo usuário seguir o modelo correto, todas as transações serão cadastradas no banco de dados e renderizadas no topo da página. 
+

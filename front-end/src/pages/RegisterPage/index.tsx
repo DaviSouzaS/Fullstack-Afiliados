@@ -32,7 +32,7 @@ export const RegisterPage = () => {
                 <div className="w-[90%]">
                     
                     <div className="flex justify-between mb-[15px]">
-                        <h1 className="font-inter text-lg font-bold">Register</h1>
+                        <h1 className="font-inter text-lg font-bold">Se registrar</h1>
                         <a className="font-inter text-base text-brand3 hover:underline" href="/">Fazer login</a>
                     </div>
 

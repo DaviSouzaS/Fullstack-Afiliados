@@ -44,7 +44,7 @@ export const LoginPage = () => {
                         <Input children={"Password"} css="w-[100%]" id="senha" inputCSS="h-[50px] border-[2px] border-[grey1] rounded-[5px] mt-[10px]" type="password" placeHolder="Digite sua senha aqui" register={register("password")}/>
                         <div className="h-[10px] text-xs text-alert1 mb-[5px]"> {errors.password && <p>{errors.password.message}</p>} </div>
 
-                        <Button children={"Fazer login"} css="w-[200px] h-[50px] bg-brand1 text-white font-inter mt-[30px] rounded-[5px] hover:bg-random12 transition" type="submit"/>
+                        <Button children={"Entrar"} css="w-[200px] h-[50px] bg-brand1 text-white font-inter mt-[30px] rounded-[5px] hover:bg-random12 transition" type="submit"/>
                     </Form>
                 </div>
 
